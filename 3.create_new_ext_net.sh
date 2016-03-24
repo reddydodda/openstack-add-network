@@ -25,6 +25,4 @@ create_new_ext_net ()
 	fi
 }
 
-crm resource restart p_neutron-l3-agent
-crm resource restart p_neutron-plugin-openvswitch-agent
 create_new_ext_net $@
