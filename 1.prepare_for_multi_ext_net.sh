@@ -5,17 +5,6 @@ L3_config_file=/etc/neutron/l3_agent.ini
 DEFAULT_BR_EX="br-floating"
 DEFAULT_PHYSNET="physnet-ex"
 
-# restart neutron services
-restart_neutron_services ()
-{
-	if pcs status &>/dev/null; then
-		initctl restart neutron-server
-	else
-		initctl restart neutron-l3-agent
-		initctl restart neutron-plugin-openvswitch-agent
-	fi
-}
-
 prepare_for_multi_ext_nets ()
 {
 	# clear gateway_external_network_id and external_network_bridge parameters in /etc/neutron/l3_agent.ini
@@ -38,6 +27,5 @@ prepare_for_multi_ext_nets ()
 }
 
 prepare_for_multi_ext_nets
-restart_neutron_services
 
 

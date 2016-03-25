@@ -3,19 +3,6 @@
 export L2_config_file=/etc/neutron/plugin.ini 
 export L3_config_file=/etc/neutron/l3_agent.ini 
 
-
-# restart neutron services
-restart_neutron_services ()
-{
-	if pcs status &>/dev/null; then
-		initctl restart neutron-server
-	else
-		initctl restart neutron-l3-agent
-		initctl restart neutron-plugin-openvswitch-agent
-	fi
-}
-
-
 create_net_infra () 
 {
 	# parse arguments
@@ -41,4 +28,3 @@ create_net_infra ()
 
 
 create_net_infra $@
-restart_neutron_services
