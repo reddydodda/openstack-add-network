@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -x
 
 export L2_config_file=/etc/neutron/plugin.ini 
 export L3_config_file=/etc/neutron/l3_agent.ini 
@@ -13,11 +13,13 @@ create_net_infra ()
 	OVS_BR=br-${NAME}
 	PHYSNET=physnet-${NAME}
 
-	# add ovs bridge and create a patch between ovs and linux bridges
+	# 2.1 create dedicated ovs bridge for new ext network
 	ovs-vsctl add-br ${OVS_BR}
+	
+	# 2.2 add external interface to the ovs bridge 
 	ovs-vsctl add-port ${OVS_BR} ${IF}
 
-	# add new physnet in bridge_map with appropriate MTU
+	# 2.3 add new physnet in bridge_map with appropriate MTU
 	if ! fgrep ${PHYSNET} ${L2_config_file}; then
 		LINE=$(awk '/^bridge_mappings/ {print NR}' ${L2_config_file}) 
 		sed -i "${LINE} s/$/,${PHYSNET}:${OVS_BR}/" ${L2_config_file}
