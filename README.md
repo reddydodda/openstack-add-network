@@ -5,6 +5,11 @@ Assumed that this script will be installed and run on the FUEL master node.
 
 The full instruction you can find [here](https://docs.google.com/document/d/1KoZhuKqsdS-UZ7WtJOZBsITyGvIytAXTlmED0sqcpLM/edit#)
 
+# Warning
+Please be aware that this script was tested only for MOS 7.0.
+
+I guees it should work for other MOS versions, but I haven't tested it. I will do it when I will have a chance.
+
 # Health check
 
 Before starting you should make sure that everything works pretty good:
@@ -65,7 +70,7 @@ If you need to add N ext networks you should repeat N times steps **2** and **4*
 
 Enjoy!
 
-PS
+### PS
 Please, don’t hesitate to contribure and let me know if you will face any issue with this script.
 
 aepifanov@mirantis.com
