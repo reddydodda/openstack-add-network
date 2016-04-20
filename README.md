@@ -1,5 +1,5 @@
-Health check
-------------
+# Health check
+
 Before starting you should make sure that everything works pretty good:
 ```
 pcs status
@@ -9,20 +9,20 @@ neutron agent-list
 nova service-list
 ```
 
-Install
--------
+# Install
 First of all you need to clone this repo to the fuel master node:
 ```
 git clone https://github.com/aepifanov/openstack-add-network.git
 ```
 
+# One short adding
 The the easiest way to add a new external network is the execute the following script:
 ```
 ./add_ext_net.sh <NAME> <IF> <MTU> <CIDR> <GATEWAY>  <START_FIP_RANGE> <END_FIP_RANGE> [DVR]
 ```
 This script just performs all the following steps automatically.
 
-
+# Step by step adding
 If you have some network modification or want to do it with additional checking you can
 perform the following steps manually:
 
