@@ -1,6 +1,9 @@
 # Introduction
 This script was implemented for the easy adding a new external network to the cloud.
+
 Assumed that this script will be installed and run on the FUEL master node.
+
+The full instruction you can find [here](https://docs.google.com/document/d/1KoZhuKqsdS-UZ7WtJOZBsITyGvIytAXTlmED0sqcpLM/edit#)
 
 # Health check
 
@@ -64,5 +67,6 @@ Enjoy!
 
 PS
 Please, don’t hesitate to contribure and let me know if you will face any issue with this script.
-@aepifanov@mirantis.com
+
+aepifanov@mirantis.com
 
