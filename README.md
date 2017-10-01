@@ -70,8 +70,6 @@ If you need to add N ext networks you should repeat N times steps **2** and **4*
 
 Enjoy!
 
-### PS
-Please, don’t hesitate to contribure and let me know if you will face any issue with this script.
-
-aepifanov@mirantis.com
+## To-Do Work
+### Adding VLAN tag for external network
 
