@@ -30,7 +30,7 @@ git clone https://github.com/aepifanov/openstack-add-network.git
 # One short adding
 The the easiest way to add a new external network is the execute the following script:
 ```
-./add_ext_net.sh <NAME> <IF> <MTU> <CIDR> <GATEWAY>  <START_FIP_RANGE> <END_FIP_RANGE> [DVR]
+./add_ext_net.sh <NAME> <IF> <MTU> <CIDR> <GATEWAY>  <START_FIP_RANGE> <END_FIP_RANGE> [DVR] <vlan_range>
 ```
 This script just performs all the following steps automatically.
 
@@ -53,7 +53,7 @@ perform the following steps manually:
 2. Create network infrastructure for new external network:
    (if you don't use DVR you shoud use only controller for search template in awk):
    ```
-   for i in $(fuel node  | awk '/controller|compute/ {print $10}'); do ssh $i 'bash -x -s' < ./2.create_infra_for_new_ext_net.sh <NAME> <IF> <MTU> ; done
+   for i in $(fuel node  | awk '/controller|compute/ {print $10}'); do ssh $i 'bash -x -s' < ./2.create_infra_for_new_ext_net.sh <NAME> <IF> <MTU> <vlan_range>; done
    ```
 
 3. Restart all neutron services on all nodes

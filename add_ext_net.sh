@@ -14,6 +14,7 @@ GATEWAY=${5:?"Please specify GATEWAY IP (5 arg)"}
 FIP_START=${6:?"Please specify start IP of Floating IP reange  (6 arg)"}
 FIP_END=${7:?"Please specify end IP of Floating IP reange  (7 arg)"}
 DVR=${8}
+PORT_RANGE=${9:?"Please specify vlan Range ex : 200:205"}
 
 NODE_TMPL="controller"
 
@@ -30,7 +31,7 @@ done
 
 # 2 step
 for i in $(echo "${NODES}" | awk '{print $10}'); do 
-	ssh $i 'bash -x -s' < ./2.create_infra_for_new_ext_net.sh ${NAME} ${IF} ${MTU}
+	ssh $i 'bash -x -s' < ./2.create_infra_for_new_ext_net.sh ${NAME} ${IF} ${MTU} ${PORT_RANGE}
 done
 
 
