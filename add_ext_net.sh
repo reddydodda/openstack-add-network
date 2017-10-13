@@ -18,10 +18,8 @@ PORT_RANGE=${9:?"Please specify vlan Range ex : 200:205"}
 
 NODE_TMPL="controller"
 
-if [[ ${DVR} == "DVR" ]]; then
-	NODE_ALL="${NODE_TMPL}|compute"
-fi
-NODE_CTRL=$(fuel node | egrep "${NODE_TMPL}")
+NODE_ALL=$(fuel node | egrep "controller|compute")
+NODE_CTRL=$(fuel node | egrep "controller")
 
 # 1 step
 for i in $(echo "${NODE_ALL}" | awk '{print $10}'); do
