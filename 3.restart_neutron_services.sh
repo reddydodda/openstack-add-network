@@ -6,7 +6,7 @@
 
 NEUTRON_SERVER=neutron-server
 NEUTRON_L3_AGENT=neutron-l3-agent
-NEUTRON_OVS_AGENT=neutron-plugin-openvswitch-agent
+NEUTRON_OVS_AGENT=neutron-openvswitch-agent
 # !!! If you use VPN please uncomment next line !!!
 #NEUTRON_L3_AGENT=neutron-vpn-agent
 
