@@ -29,8 +29,8 @@ done
 
 # Restart neutron services which are under pacemaker (L3 and OVS agents)
 CONTROLLER=$(echo "${NODES}" | awk '/controller/ {print $10}' | head -n 1)
-ssh ${CONTROLLER} "pcs resource disable p_${NEUTRON_L3_AGENT}  --wait=${TIMEOUT} &&  \
-		   pcs resource enable  p_${NEUTRON_L3_AGENT}  --wait=${TIMEOUT};    \
-		   pcs resource disable p_${NEUTRON_OVS_AGENT} --wait=${TIMEOUT} && \
-		   pcs resource enable  p_${NEUTRON_OVS_AGENT} --wait=${TIMEOUT};" 
+ssh ${CONTROLLER} "pcs resource disable ${NEUTRON_L3_AGENT}  --wait=${TIMEOUT} &&  \
+		   pcs resource enable  ${NEUTRON_L3_AGENT}  --wait=${TIMEOUT};    \
+		   pcs resource disable ${NEUTRON_OVS_AGENT} --wait=${TIMEOUT} && \
+		   pcs resource enable  ${NEUTRON_OVS_AGENT} --wait=${TIMEOUT};" 
 
