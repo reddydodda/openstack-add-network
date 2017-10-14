@@ -9,7 +9,7 @@ prepare_for_host_mem ()
 {
 	# 1.1 add served host memory
 	if grep "^reserved_host_memory_mb" ${nova_config_file}; then
-		sed -i "/^reserved_host_memory_mb/a reserved_host_memory_mb = 40960" ${nova_config_file}
+		sed -i "/^reserved_host_memory_mb/c\reserved_host_memory_mb = 40960" ${nova_config_file}
 	fi
 
 }
