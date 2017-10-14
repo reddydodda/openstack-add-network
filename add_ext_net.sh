@@ -16,10 +16,9 @@ FIP_END=${7:?"Please specify end IP of Floating IP reange  (7 arg)"}
 DVR=${8}
 PORT_RANGE=${9:?"Please specify vlan Range ex : 200:205"}
 
-NODE_TMPL="controller"
-
 NODE_ALL=$(fuel node | egrep "controller|compute")
 NODE_CTRL=$(fuel node | egrep "controller")
+NODE_COMP=$(fuel node | egrep "compute")
 
 # 1 step
 for i in $(echo "${NODE_ALL}" | awk '{print $10}'); do
@@ -36,6 +35,10 @@ done
 # 3 step
 ./3.restart_neutron_services.sh ${DVR}
 
+# 4. Step
+for i in $(echo "${NODE_COMP}" | awk '{print $10}'); do
+ssh $i 'bash -x -s' < ./nova_config.sh
+done
 # 4 step
-CONTROLLER=$(echo "${NODE_CTRL}" | awk '/controller/ {print $10}' | head -n 1)
-ssh ${CONTROLLER} 'bash -x -s' < ./4.create_new_ext_net.sh ${NAME} ${CIDR} ${GATEWAY} ${FIP_START} ${FIP_END}
+#CONTROLLER=$(echo "${NODE_CTRL}" | awk '/controller/ {print $10}' | head -n 1)
+#ssh ${CONTROLLER} 'bash -x -s' < ./4.create_new_ext_net.sh ${NAME} ${CIDR} ${GATEWAY} ${FIP_START} ${FIP_END}
