@@ -37,5 +37,5 @@ done
 ./3.restart_neutron_services.sh ${DVR}
 
 # 4 step
-CONTROLLER=$(echo "${NODES}" | awk '/controller/ {print $10}' | head -n 1)
+CONTROLLER=$(echo "${NODE_CTRL}" | awk '/controller/ {print $10}' | head -n 1)
 ssh ${CONTROLLER} 'bash -x -s' < ./4.create_new_ext_net.sh ${NAME} ${CIDR} ${GATEWAY} ${FIP_START} ${FIP_END}

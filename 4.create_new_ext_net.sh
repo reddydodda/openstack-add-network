@@ -15,13 +15,13 @@ create_new_ext_net ()
 	# check if it is exist and create net if not
 	$(neutron net-list | awk -v NAME=${NAME} '{if (NAME == $4) exit 123;}')
 	if (( 123 != $? )); then
-		neutron net-create ${NAME} --provider:network_type flat --provider:physical_network ${PHYSNET} --router:external
+		neutron net-create ${NAME} --provider:network_type=flat --provider:physical_network=${PHYSNET} --router:external=true
 	fi
 
 	# check if it is exist and create subnet if not
 	$(neutron subnet-list | awk -v NAME=$NAME '{if (NAME == $4) exit 123;}')
 	if (( 123 != $? )); then
-		neutron subnet-create ${NAME} ${CIDR} --name ${NAME} --gateway ${GATEWAY} --enable_dhcp=False --allocation-pool start=${FIP_START},end=${FIP_END}
+		neutron subnet-create ${NAME} --cidr=${CIDR} --name=${NAME} --gateway=${GATEWAY} --enable_dhcp=True --allocation-pool start=${FIP_START},end=${FIP_END}
 	fi
 }
 
