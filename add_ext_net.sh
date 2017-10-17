@@ -21,7 +21,12 @@ NODE_CTRL=$(fuel node | egrep "controller")
 NODE_COMP=$(fuel node | egrep "compute")
 
 # 1 step
-for i in $(echo "${NODE_ALL}" | awk '{print $10}'); do
+for i in $(echo "${NODE_CTRL}" | awk '{print $10}'); do
+	ssh $i 'bash -x -s' < ./1.prepare_for_multi_ext_net.sh ${NAME} enp1s0f0
+	#ssh $i 'bash -x -s' < ./1.prepare_for_multi_ext_net.sh ${NAME} enp1s0f1
+done
+
+for i in $(echo "${NODE_COMP}" | awk '{print $10}'); do
 	ssh $i 'bash -x -s' < ./1.prepare_for_multi_ext_net.sh ${NAME} ${IF}
 done
 
