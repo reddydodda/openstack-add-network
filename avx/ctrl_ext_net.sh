@@ -1,5 +1,5 @@
 #!/bin/bash
-
+L2_config_file=/etc/neutron/plugins/ml2/ml2_conf.ini
 L3_config_file=/etc/neutron/l3_agent.ini
 OVS_config_file=/etc/neutron/plugins/ml2/openvswitch_agent.ini
 DEFAULT_BR_EX="br-floating"
@@ -25,8 +25,8 @@ prepare_for_multi_ext_ctrl ()
 		
 		printf "auto enp1s0f0 \niface enp1s0f0 inet manual" > /etc/network/interfaces.d/ifcfg-enp1s0f0
 		printf "auto enp1s0f1 \niface enp1s0f1 inet manual" > /etc/network/interfaces.d/ifcfg-enp1s0f1
-		if up enp1s0f0
-		if up enp1s0f1
+		ifup enp1s0f0
+		ifup enp1s0f1
 		
 		PHYSNET1=physnet-ext2
 		PHYSNET2=physnet-ext3
@@ -74,7 +74,6 @@ prepare_for_multi_ext_ctrl ()
 		pcs resource disable clone_neutron-l3-agent
 		pcs resource enable clone_neutron-l3-agent
 		service neutron-openvswitch-agent restart
-		
 }
 
 

@@ -23,8 +23,8 @@ prepare_for_multi_ext_comp ()
 		# Copy Interfaces
 		printf "auto eno3 \niface eno3 inet manual" > /etc/network/interfaces.d/ifcfg-eno3
 		printf "auto eno4 \niface eno4 inet manual" > /etc/network/interfaces.d/ifcfg-eno4
-		if up eno3
-		if up eno4
+		ifup eno3
+		ifup eno4
 		
 		PHYSNET1=physnet-ext2
 		PHYSNET2=physnet-ext3
@@ -53,7 +53,7 @@ prepare_for_multi_ext_comp ()
 		fi
 		
 		# Restart services
-		service restart neutron-l3-agent restart
+		service neutron-l3-agent restart
 		service neutron-openvswitch-agent restart
 		service nova-compute restart
 		
