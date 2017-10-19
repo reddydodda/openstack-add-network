@@ -72,8 +72,10 @@ prepare_for_multi_ext_ctrl ()
 
 		# Restart Neutron Services
 		pcs resource disable clone_neutron-l3-agent
+		wait 60
 		pcs resource enable clone_neutron-l3-agent
 		service neutron-openvswitch-agent restart
+		service neutron-server restart
 }
 
 
